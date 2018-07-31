@@ -1,0 +1,53 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to VilSon's Agro</title>
+    <link rel="stylesheet" href="{% static 'css/home_css.css' %}">
+    <!--<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+
+</head>
+<body>
+<header>
+    <h1>feedback</h1>
+</header>
+<div class="topnav" role="navigation">
+    <div id="NavDIV">
+        <a class="navi" href="http://127.0.0.1:8000/home/">HOME</a>
+        <a class="navi" href="http://127.0.0.1:8000/about_us/">ABOUT US</a>
+        <a class="navi" href="http://127.0.0.1:8000/products/">PRODUCTS</a>
+        <a class="navi" href="http://127.0.0.1:8000/food_safety/">FOOD SAFETY</a>
+        <a class="navi active" href="http://127.0.0.1:8000/feedback/">FEEDBACK</a>
+        <a class="navi" href="http://127.0.0.1:8000/contact_us/">CONTACT US</a>
+    </div>
+</div>
+<div class="container">
+    <div>
+     <form  method="post" target="_self" action="/feedback">
+         {% block content %}
+         {% csrf_token %}
+         {{ form.as_p }}
+         <fieldset>
+             <legend>FEEDBACK FORM </legend><br>
+              FULL NAME: <input type="text"  name="first_name" required><br><br>
+              CITY     : <input type="text" name="city" required><br><br>
+              MOBILE NO: <input type="text" maxlength="10"  pattern="[0-9]{10}" name="mobile_no" required ><br><br>
+              EMAIL ID : <input type="email" name="email_id" required><br><br>
+             MESSAGE  : <textarea name="message" rows="10" cols="30" required></textarea><br><br>
+              <input type="submit"   value="SUBMIT">
+             <button type="reset" onclick="alert('hello ...!!')">RESET </button>
+
+         </fieldset>
+         {% endblock %}
+     </form>
+
+    </div>
+
+</div>
+<footer> Copyright &copy; VilSon's Agro </footer>
+
+</body>
+</html>
